@@ -49,14 +49,16 @@ class Api {
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
+    print('url = $Url body = $body token = $token ');
     http.Response response =
         await http.put(Uri.parse(Url), body: body, headers: headers);
     if (response.statusCode == 200) {
-      Map<String, String> Data = jsonDecode(response.body);
+      Map<String, dynamic> Data = jsonDecode(response.body);
+      print(Data);
       return Data;
     } else {
       throw Exception(
-          'ther is a problem with statusCode ${response.statusCode} with body ${jsonDecode(response.body)}');
+          'there is a problem with status code ${response.statusCode} with body ${jsonDecode(response.body)}');
     }
   }
 }
